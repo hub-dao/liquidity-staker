@@ -4,7 +4,7 @@ import { solidity, deployContract } from 'ethereum-waffle'
 
 import { expandTo18Decimals } from './utils'
 
-import UniswapV2ERC20 from '@uniswap/v2-core/build/ERC20.json'
+import UniswapV2ERC20 from '@hubdao/core/build/ERC20.json'
 import TestERC20 from '../build/TestERC20.json'
 import StakingRewards from '../build/StakingRewards.json'
 import StakingRewardsFactory from '../build/StakingRewardsFactory.json'
@@ -45,12 +45,12 @@ export async function stakingRewardsFactoryFixture(
   [wallet]: Wallet[],
   provider: providers.Web3Provider
 ): Promise<StakingRewardsFactoryFixture> {
-  const rewardsToken = await deployContract(wallet, TestERC20, [expandTo18Decimals(1_000_000_000)])
+  const rewardsToken = await deployContract(wallet, TestERC20, [expandTo18Decimals(21_000_000)])
 
   // deploy staking tokens
   const stakingTokens = []
   for (let i = 0; i < NUMBER_OF_STAKING_TOKENS; i++) {
-    const stakingToken = await deployContract(wallet, TestERC20, [expandTo18Decimals(1_000_000_000)])
+    const stakingToken = await deployContract(wallet, TestERC20, [expandTo18Decimals(21_000_000)])
     stakingTokens.push(stakingToken)
   }
 
